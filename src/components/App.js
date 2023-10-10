@@ -11,7 +11,7 @@ function App() {
 
   function eatSushi(event, price) {
     const sushiId = parseInt(event.target.id);
-    if (!eaten.includes(sushiId) && event.target.id && budget >= price){
+    if (!eaten.includes(sushiId) && event.target.id && budget >= price) {
       setEaten([...eaten, sushiId]);
       setBudget(budget - price);
     }
@@ -29,9 +29,9 @@ function App() {
         sushis={sushis}
         eatSushi={eatSushi}
         eaten={eaten} />
-      <Table 
-      budget={budget}
-      eaten={eaten}/>
+      <Table
+        budget={budget}
+        eaten={eaten} />
     </div>
   );
 }
