@@ -1,20 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import MoreButton from "./MoreButton";
 import Sushi from "./Sushi";
 
-function SushiContainer({api}) {
+function SushiContainer({sushis, eatSushi, eaten}) {
   return (
     <div className="belt">
-      {/* Render Sushi components here! */}
-      {useEffect(()=>{
-        fetch(api)
-        .then(res => res.json())
-        .then(sushiList => {
-          sushiList.forEach(sushi => {
-            <Sushi />
-          });
-        })
-      })}
+      {sushis.map( sushi => <Sushi key={sushi.id} sushi={sushi} eatSushi={eatSushi} eaten={eaten}/>)}
       <MoreButton />
     </div>
   );
