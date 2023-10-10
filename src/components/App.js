@@ -5,15 +5,16 @@ import Table from "./Table";
 const API = "http://localhost:3001/sushis";
 
 function App() {
+  const [budget, setBudget] = useState(100);
   const [sushis, setSushis] = useState([]);
   const [eaten, setEaten] = useState([]);
 
-  function eatSushi(event) {
+  function eatSushi(event, price) {
     const sushiId = parseInt(event.target.id);
-    if (!eaten.includes(sushiId) && event.target.id){
+    if (!eaten.includes(sushiId) && event.target.id && budget >= price){
       setEaten([...eaten, sushiId]);
+      setBudget(budget - price);
     }
-    console.log(eaten);
   };
   useEffect(() => {
     fetch(API)
@@ -28,7 +29,9 @@ function App() {
         sushis={sushis}
         eatSushi={eatSushi}
         eaten={eaten} />
-      <Table />
+      <Table 
+      budget={budget}
+      eaten={eaten}/>
     </div>
   );
 }
